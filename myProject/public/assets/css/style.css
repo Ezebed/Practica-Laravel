@@ -1,0 +1,117 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #666;
+}
+
+header {
+    width: 100vw;
+    height: 50px;
+    background-color: beige;
+    padding: 10px;
+    display: flex;
+    font-weight: bold;
+}
+
+header nav {
+    width: 100vw;
+}
+
+header nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 5px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #999;
+}
+
+header nav ul li a:hover {
+    color: lightgreen;
+}
+
+main {
+    padding: 5px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-top: 10px;
+    margin: 5px;
+    width: 150px;
+}
+
+.card p {
+    font-size: 10px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.userform {
+    /* border: 1px solid rgb(82, 82, 82); */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-sizing: border-box;
+    width: 400px;
+    margin: 0 auto;
+    padding-left: 40px;
+
+    box-shadow: -1px 0px 22px 5px rgba(0,0,0,0.56);
+    -webkit-box-shadow: -1px 0px 22px 5px rgba(0,0,0,0.56);
+    -moz-box-shadow: -1px 0px 22px 5px rgba(0,0,0,0.56);
+}
+
+
+
+.userform input {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: #999;
+    width: 250px;
+}
+
+.userform div label {
+    width: 80px;
+    display: inline-block;
+}
+
+.submitBtn {
+    margin: 0 auto;
+    background-color: rgb(37, 231, 53);
+    color: black;
+    display: inline-block;
+    padding: 2px 10px;
+    border: 0.5px solid;
+}
+
+.submitBtn:hover {
+    cursor: pointer;
+}
+
+.messageNotification {
+    padding: 5px 10px;
+    color: black;
+    box-sizing: border-box;
+}
+
+.success {
+    background-color: lime;
+}
+
+.danger {
+    background-color: red;
+}
