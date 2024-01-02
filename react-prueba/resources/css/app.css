@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero {
+    background-image: url('../../public/images/landing/landingBanner.webp');
+    background-size: cover;
+}

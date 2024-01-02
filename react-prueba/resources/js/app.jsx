@@ -10,3 +10,8 @@ createInertiaApp({
         createRoot(el).render(<App {...props} />)
     },
 })
+
+import.meta.glob([
+    '../images/**',
+    '../fonts/**',
+  ]);

@@ -1,10 +1,10 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
 
-export default function hola(){
-    return <div> Hola componente de react </div>;
+function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
 }
-
-if (document.getElementById('hola')){
-    createRoot(document.getElementById('hola')).render(<hola />);
-}
+  
+const root = ReactDOM.createRoot(document.getElementById('hola'));
+const element = <Welcome name="Sara" />;
+root.render(element);

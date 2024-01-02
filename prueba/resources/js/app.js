@@ -1,2 +1,2 @@
 import './bootstrap';
-import './hola';
+import './hola.jsx';

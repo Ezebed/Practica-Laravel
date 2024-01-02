@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\EzebedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Test');
+// ruta para exponer las imagenes para poder ser accedidas desde reactjs
+Route::get('images/{filename}', function ($filename) {
+    $path = public_path('images/' . $filename);
+    if (file_exists($path)) {
+        return response()->file($path);
+    } else {
+        abort(404);
+    }
 });
+
+
+// ruta de pruebas
+Route::get('/test', function () {
+    return Inertia::render('Test');
+})->name('test');
+
+Route::get('/', [EzebedController::class, 'index'])->name('ezebed');
