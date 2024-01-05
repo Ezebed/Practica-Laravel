@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Head } from '@inertiajs/inertia-react';
+import { Head, Link } from '@inertiajs/inertia-react';
 import TaskListLayout from "../layouts/TaskListLayout";
 import TaskButton from "../components/TaskButton";
 import Task from "../components/Task";
@@ -8,12 +8,14 @@ export default function TaskList(){
     const [tasks, setTasks ] = useState([]);
     
     const deleteTask = (e) => {
-        // let taskDeleted = e.taskId;
-        console.log(e);
+        let taskToDelete = e.target.value;
+        console.log(tasks);
+        // let newTasks = tasks.filter( (task) => task !== taskToDelete );
+        // setTasks(newTasks);
     }
 
     const addTask = () => {
-        console.log('add task');
+        // console.log('add task');
         const newTask = <Task 
                             taskText={'Task '+ (tasks.length + 1)} 
                             key={tasks.length+1} 
@@ -32,9 +34,9 @@ export default function TaskList(){
                 <TaskButton text={'+'} handleClick={addTask}/>
             </div>
 
-            <div className="min-h-[60vh] my-4 p-4 rounded-lg bg-[#5c5b5b]  ">
+            <ul className="min-h-[60vh] my-4 p-4 rounded-lg bg-[#5c5b5b]  ">
                     {tasks}
-            </div>
+            </ul>
         </TaskListLayout>
     );
 }

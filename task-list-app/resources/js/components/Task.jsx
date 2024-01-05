@@ -9,10 +9,10 @@ export default function Task({taskId, taskText, handleClick}){
 
     return(
 
-        <div id={taskId} className={taskStyle} >
+        <li id={taskId} className={taskStyle} >
             <p className="font-bold">{taskText}</p>
 
             <TaskButton text='X' handleClick={handleClick}/>
-        </div>
+        </li>
     );
 }
