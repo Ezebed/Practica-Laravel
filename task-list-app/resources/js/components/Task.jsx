@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import TaskButton from "./TaskButton";
 
 export default function Task({taskId, taskText, handleClick}){
@@ -9,10 +8,10 @@ export default function Task({taskId, taskText, handleClick}){
 
     return(
 
-        <li id={taskId} className={taskStyle} >
+        <div id={taskId} className={taskStyle} >
             <p className="font-bold">{taskText}</p>
 
-            <TaskButton text='X' handleClick={handleClick}/>
-        </li>
+            <TaskButton text='X' btnValue={taskId} handleClick={handleClick}/>
+        </div>
     );
 }

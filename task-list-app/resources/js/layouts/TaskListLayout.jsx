@@ -3,10 +3,11 @@ import TitleBanner from "../components/TitleBanner";
 
 export default function TaskListLayout({children}) {
 
-    document.body.style.backgroundColor = '#333'; 
+    document.body.style.backgroundColor = '#333';
+    document.body.style.position = 'relative'; 
 
     return(
-        <div className=" " >
+        <div className="" >
 
             <div className="h-[90%] w-4/5 mx-auto ">
                 <TitleBanner />
