@@ -3,52 +3,48 @@ import { Head, Link } from '@inertiajs/inertia-react';
 import TaskListLayout from "../layouts/TaskListLayout";
 import TaskButton from "../components/TaskButton";
 import Task from "../components/Task";
-import { saveTaskList, loadTaskList } from "../logic/storage/TaskListStorage";
+import { saveTaskList, loadTaskList  } from "../logic/storage/TaskListStorage";
 import TaskForm from "../components/taskForm";
 
 
+
 export default function TaskList(){
-    // estados para las tareas
-    const [tasks, setTasks ] = useState([]);
+    
+    const [tasks,setTasks] = useState([]);
 
     // estado para el modal de nueva tarea
     const [modalActive, setModalActive] = useState(false);
 
-    // cargando los tasks desde ellocal storage
+    
     useEffect(() => {
         const tasksLoaded = loadTaskList();
 
-        if( tasksLoaded && Array.isArray(tasksLoaded) ){
-            const reactTasks = tasksLoaded.map((task, index) =>{
-                const newProps = {
-                    taskId: task.props.taskId,
-                    taskText: task.props.taskText,
-                    handleClick: deleteTask
-                }
-                return React.createElement(Task, {key: index, ...newProps  });
-            });
-
-            setTasks(reactTasks);
+        if( tasksLoaded && Array.isArray(tasksLoaded)){
+            
+            setTasks(tasksLoaded);
         }
-    }, []);
+    },[]);
+
+    useEffect(() => {
+        saveTaskList(tasks);
+    },[tasks])
+
     
+
     // borrar task de la lista
-    const deleteTask = (e) => {
-        let taskToDelete = document.getElementById(e.target.value);
-        taskToDelete.remove();
-        saveTaskList(tasks)
+    const deleteTask = (taskText) => {
+        // console.log(tasks);
+        
+        const newTasks = tasks.filter(text => text !== taskText);
+        setTasks(newTasks);
     }
     
     // agregar una nueva tarea a la lista
     const addTask = (newTaskText) => {
-        // console.log(tasks);
-        const newTask = <Task 
-                            taskText={newTaskText} 
-                            taskId={'task_'+(tasks.length+1)} 
-                            handleClick={deleteTask} />;
-        const newList = [...tasks, newTask];
-        saveTaskList(newList);
-        setTasks(newList);
+        console.log(tasks);
+        const newTasks = [ ...tasks ,newTaskText];
+        
+        setTasks(newTasks)
         toggleModal();
     }
 
@@ -67,7 +63,12 @@ export default function TaskList(){
             </div>
 
             <ul className="min-h-[60vh] my-4 p-2 rounded-lg bg-[#5c5b5b]  ">
-                    {tasks.map((x, index) => { return <li key={index}  > { x } </li> })}
+                    {
+                        tasks.map((text,index) => { return <Task key={index}
+                                                                taskId={'task_'+(index+1)}
+                                                                taskText={text}
+                                                                handleClick={deleteTask} /> })
+                    }
             </ul>
 
             {modalActive && <TaskForm handleCancelar={toggleModal} handleAcept={addTask}/>}

@@ -30,7 +30,7 @@ export default function TaskForm({handleCancelar, handleAcept}) {
         <div className={placeStyles} >
             <div className={formStyles} >
 
-                <input id="taskID" name="taskname" className={ inputStyles } type="text" placeholder="Task Text..." onChange={handleChange} />
+                <input autoFocus id="taskID" name="taskname" className={ inputStyles } type="text" placeholder="Task Text..." onChange={handleChange} />
 
                 <div className="flex justify-around mt-4" >
                     <TaskButton text='Agregar' handleClick={setTask} />
