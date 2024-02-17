@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('chat_id');
-            $table->foreing('chat_id')->references('id')->on('chats');
+            $table->foreign('chat_id')->references('id')->on('chats');
             $table->unsignedBigInteger('sender_id');
-            $table->foreing('sender_id')->references('id')->on('users');
+            $table->foreign('sender_id')->references('id')->on('users');
             $table->text('body')->nullable();
             $table->timestamps();
         });

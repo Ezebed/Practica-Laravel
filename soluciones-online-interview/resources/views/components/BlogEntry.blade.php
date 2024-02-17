@@ -6,7 +6,7 @@
             <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed dicta doloribus cum consequuntur ab quasi nam harum! Corporis a harum sunt quaerat cum eos exercitationem eveniet neque obcaecati? Fugit, facilis?
             </p>
-            <button class="bg-[#5f5f5f] py-2 px-4 rounded font-bold mt-2 hover:bg-indigo-500 transition-colors" >Chat</button>
+            <button wire:click="$emit('chargeChat')" class="bg-[#5f5f5f] py-2 px-4 rounded font-bold mt-2 hover:bg-indigo-500 transition-colors" >Chat</button>
         </div>
     </div>
 </figure>
