@@ -6,16 +6,16 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Message;
 use App\Models\Chat;
+use Livewire\Attributes\On;
 
 class ShowChatBox extends Component
 {
     public $chats = [];
 
-    protected $listeners = ['chargeChat'=> 'hola'];
-
+    #[on('chargeChat')]
     public function loadChat($receiver_id)
     {
-        dd('hola'.$receiver_id);
+        // dd('hola '.$receiver_id);
         $existChat = Chat::where('userA_id',auth()->user()->id)->where('userB_id',$receiver_id)
                             ->orWhere('userA_id',$receiver_id)->where('userB_id',auth()->user()->id)
                             ->get();
@@ -24,17 +24,20 @@ class ShowChatBox extends Component
         {
             $newChat = Chat::create(['userA_id'=>auth()->user()->id,'userB_id'=>$receiver_id]);
             $newChat->save();
-            $this->chats->push($newChat);
+            array_push($this->chats,$newChat);
         }
         else if ( !in_array($existChat,$this->chats) )
         {
-            $this->chats->push($existChat);
+            array_push($this->chats,$existChat);
         }
+        // dd($this->chats);
+        $this->render();
     }
 
-    public function hola()
+    // #[on('prueba')]
+    public function hola(User $chatID)
     {
-        dd('esto debe funcionar');
+        dd($chatID);
     }
 
     public function render()

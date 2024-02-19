@@ -15,10 +15,18 @@ class ChatBox extends Component
 
     public $receiver;
 
+    public $messages;
+    
+    public $messageBody;
+
+    public $chatData;
+
     public function mount($currentChat)
     {
-        $this->receiver = User::find(5);
-        dd($currentChat);
+        $this->chatData = $currentChat;
+        $this->receiver = User::find( $currentChat->userA_id == Auth()->user()->id ?
+                                      $currentChat->userB_id : $currentChat->userA_id );
+        $this->loadChat();
     }
 
     public function handleMinimize()
@@ -33,15 +41,26 @@ class ChatBox extends Component
 
     public function loadChat()
     {
-        $existChat = Chat::where('userA_id',auth()->user()->id)->where('userB_id',$this->receiverId)
-                            ->orWhere('userA_id',$this->receiverId)->where('userB_id',auth()->user()->id)
-                            ->get();
+        $this->messages = Message::where('chat_id',$this->chatData->id)->get();
+    }
 
-        if(count($existChat) == 0)
+    public function sendMessage()
+    {
+        if($this->messageBody == null)
         {
-            $newChat = Chat::create(['userA_id'=>auth()->user()->id,'userB_id'=>$this->receiverId]);
-            $newChat->save();
+            return null;
         }
+
+        // dd($this->chatData->id);
+
+        $newMessage = Message::create([
+            'chat_id' => $this->chatData->id,
+            'sender_id' => Auth()->user()->id,
+            'body' => $this->messageBody,
+        ]);
+
+        $this->reset('messageBody');
+        $this->loadChat();
     }
 
     public function render()
