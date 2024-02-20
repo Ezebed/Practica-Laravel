@@ -21,11 +21,11 @@
         </div>
         @if(!$isMinimize)
         <!-- ChatBody -->
-        <div class="w-full h-[400px] p-2 flex flex-col space-y-2 bg-stone-200">
+        <div class="w-full h-[400px] p-2 flex flex-col space-y-2 bg-stone-200 overflow-y-auto scroll">
             @forelse($messages as $message)
             <div class="flex space-x-4 w-full {{ Auth()->user()->id == $message->sender_id ? ' flex-row-reverse space-x-reverse':'' }}  ">
-                <div class="size-[60px] rounded-full bg-stone-600 "></div>
-                <p class=" w-[70%] min-h-[60px] p-2 {{Auth()->user()->id == $message->sender_id ? ' bg-indigo-500':'bg-stone-500'}} rounded-lg">{{$message->body}}</p>
+                <div class="size-[30px] rounded-full bg-stone-600 "></div>
+                <p class=" w-[70%] min-h-[60px] p-2 text-wrap break-words text-white {{Auth()->user()->id == $message->sender_id ? ' bg-indigo-400':'bg-stone-500'}} rounded-lg">{{$message->body}}</p>
             </div>
             @empty
             <div class="w-full h-full grid place-content-center">

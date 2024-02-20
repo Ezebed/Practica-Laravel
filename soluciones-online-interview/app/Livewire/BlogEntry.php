@@ -10,7 +10,7 @@ class BlogEntry extends Component
 
     public $imgUrl;
 
-    public $userChat = 5;
+    public $userChat = 12;
     
     public function emitChat()
     {
